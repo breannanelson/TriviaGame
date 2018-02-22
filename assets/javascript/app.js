@@ -16,32 +16,10 @@ var trivia = [
 
 var selectionMade = false;
 var totalQCount = 0;
+var correctAnsCount = 0;
+var wrongAnsCount = 0;
+var timeOutCount = 0;
 // var audio = new Audio("LINK AN AUDIO FILE HERE");
-
-
-function timer() {
-    var count = 5;
-    var sec = setInterval(function () {
-        if (selectionMade) {
-            clearTimeout(sec);
-            selectionMade = false;
-        }
-        else if (count === 0) {
-            clearTimeout(sec);
-            timeUp();
-        }
-        else {
-            if (count >= 10) {
-                secondsLeft(count);
-            }
-            else {
-                count = "0" + count;
-                secondsLeft(count);
-            }
-        }
-        count--;
-    }, 1000)
-}
 
 function randomIndexGen() {
     var int1 = Math.floor(Math.random() * 4);
@@ -83,24 +61,29 @@ function questionSlideShow() {
     i++;
 }
 
-function reset() {
-    // start over the game;
-    // sets selection to false;
+function timer() {
+    var count = 10;
+    var sec = setInterval(function () {
+        if (selectionMade) {
+            clearTimeout(sec);
+            selectionMade = false;
+        }
+        else if (count === 0) {
+            clearTimeout(sec);
+            timeUp();
+        }
+        else {
+            if (count >= 10) {
+                secondsLeft(count);
+            }
+            else {
+                count = "0" + count;
+                secondsLeft(count);
+            }
+        }
+        count--;
+    }, 1000)
 }
-
-function finalStats() {
-    // displays final stats
-    // correctly answered
-    // incorrectly answered
-    // unanswered
-}
-
-// boolean selectMade = false;
-// if region is selected set selectMade = true;
-
-// if selection not made (selectMade = false), and time === 0, .empty() question and display congratualtions page
-// if selection made is true check answer. if correct display correct! correctCount++
-// if selection made is true check answer. if false display youre wrong! wrongCount++
 
 function secondsLeft(val) {
     $("#timer").html("<h2>00:" + val + "<h2>")
@@ -112,7 +95,7 @@ function timeUp() {
     $("#question").empty();
     $("#answer").html("Time is up! The correct answer is " + trivia[totalQCount].answers[0]);
     totalQCount++;
-    setTimeout(function() {
+    setTimeout(function () {
         $("#answer").empty();
         if (totalQCount < trivia.length) {
             timer();
@@ -121,14 +104,15 @@ function timeUp() {
         else {
             finalStats();
         }
-      }, 5000);
+    }, 5000);
+    timeOutCount++;
 }
 
 function correctAnsFeedback() {
     $("#timer").empty();
     $("#question").empty();
     $("#answer").text("You are correct!")
-    setTimeout(function() {
+    setTimeout(function () {
         $("#answer").empty();
         if (totalQCount < trivia.length) {
             timer();
@@ -137,14 +121,15 @@ function correctAnsFeedback() {
         else {
             finalStats();
         }
-      }, 5000);
+    }, 5000);
+    correctAnsCount++;
 }
 
 function wrongAnsFeedback() {
     $("#timer").empty();
     $("#question").empty();
     $("#answer").html("You are incorrect! The correct answer is " + trivia[totalQCount].answers[0]);
-    setTimeout(function() {
+    setTimeout(function () {
         $("#answer").empty();
         if (totalQCount < trivia.length) {
             timer();
@@ -153,21 +138,29 @@ function wrongAnsFeedback() {
         else {
             finalStats();
         }
-      }, 5000);
+    }, 5000);
+    wrongAnsCount++;
 }
 
 function finalStats() {
     $("#timer").empty();
     $("#question").empty();
-    $("#answer").html("That's a wrap!");
+    $("#answer").html("That's a wrap!<br>Number of correct answers: " + correctAnsCount + "<br>Number of incorrect answers: " + wrongAnsCount + "<br>Number of unanswered questions: " + timeOutCount + "<br>");
     $("#answer").append("<button class= 'startButton'>Try Again</button>")
+    // Reset
+    reset();
+}
+
+function reset() {
     totalQCount = 0;
     i = 0;
+    correctAnsCount = 0;
+    wrongAnsCount = 0;
+    timeOutCount = 0;
 }
 
 
 // Start button
-
 $("#button").html("<button class= 'startButton'>Start</button><br>");
 
 $(document).on("click", ".startButton", function () {
@@ -176,8 +169,6 @@ $(document).on("click", ".startButton", function () {
     timer();
     questionSlideShow()
 })
-
-
 
 $(document).on("click", "#correctAns", function () {
     correctAnsFeedback();
