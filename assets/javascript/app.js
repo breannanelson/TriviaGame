@@ -1,16 +1,76 @@
 
 var trivia = [
     {
-        question: "What is your name?",
-        answers: ["Bree", "Paul", "Daisy", "Aleks"]
+        question: "What was the name of Sheldon’s favorite cat?",
+        answers: ["Zazzles", "Marie Curie", "Oppenheimer", "Einstein"]
     },
     {
-        question: "What is your age?",
-        answers: ["23", "21", "45", "12"]
+        question: "Who has Nebraskan man hands?",
+        answers: ["Penny", "Amy", "Leonard", "Sheldon"]
     },
     {
-        question: "Where do you live?",
-        answers: ["Irvine", "Seattle", "Mission Viejo", "Tustin"]
+        question: "What is Raj’s favorite drink?",
+        answers: ["Grasshopper", "Margarita", "Lemon Drop", "Sex on the Beach"]
+    },
+    {
+        question: "Who does Wolowitz meet on Thanksgiving volunteering at the soup kitchen?",
+        answers: ["Elon Musk", "John Glen", "Adam West", "Bill Gates"]
+    },    
+    {
+        question: "What is Raj’s occupation?",
+        answers: ["Astrophysicist", "Geologist", "Engineer", "Archeologist"]
+    },    
+    {
+        question: "What is NOT a job Wolowitz has had?",
+        answers: ["Bartender", "Magician", "Engineer", "Astronaut"]
+    },    
+    {
+        question: "Who does Sheldon go to a sauna with?",
+        answers: ["James Earl Jones", "Stephen Hawking", "Bills Gates", "Amy Farrah Fowler"]
+    },    
+    {
+        question: "What does Leonard bring Sheldon back from his sea research expedition?",
+        answers: ["A sailor cap", "A snow flake", "A copy of the Admiral Byrd Expedition", "A tee-shirt"]
+    },    
+    {
+        question: "Who has a brother who has done time in Prison?",
+        answers: ["Penny", "Bernadette", "Leonard", "Sheldon"]
+    },    
+    {
+        question: "Who has a twin sister?",
+        answers: ["Sheldon", "Amy", "Bernadette", "Leonard"]
+    },    
+    {
+        question: "What sport does Sheldon not play but is an expert in?",
+        answers: ["Football", "Basketball", "Hockey", "Baseball"]
+    },    
+    {
+        question: "Penny finds a job at last and has her big acting break in a commercial for what product?",
+        answers: ["Hemorrhoid cream", "Toothpaste", "Dandruff shampoo", "Ladies razors"]
+    },    
+    {
+        question: "What is the name of Sheldon’s podcast?",
+        answers: ["Fun of Flags", "Truth about Trains", "Fun with Physics", "Wonders of Weaving"]
+    },    
+    {
+        question: "What did Sheldon almost win a Nobel Prize in?",
+        answers: ["Chemistry", "Physics", "Mathematics", "Music"]
+    },    
+    {
+        question: "Who was Penny’s first husband?",
+        answers: ["Zack", "Leonard", "Kurt", "Stewart"]
+    },    
+    {
+        question: "Which Disney princess did Bernadette dress up as?",
+        answers: ["Cinderella", "Sleeping Beauty", "Snow White", "Belle"]
+    },    
+    {
+        question: "What sport did Barry Kripke teach the boys?",
+        answers: ["Fencing", "Basketball", "Wrestling", "Swimming"]
+    },    
+    {
+        question: "What state does Sheldon’s mother live in?",
+        answers: ["Texas", "New Jersey", "Kentucky", "Nebraska"]
     }
 ];
 
@@ -62,7 +122,7 @@ function questionSlideShow() {
 }
 
 function timer() {
-    var count = 10;
+    var count = 30;
     var sec = setInterval(function () {
         if (selectionMade) {
             clearTimeout(sec);
