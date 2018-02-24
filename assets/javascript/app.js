@@ -50,7 +50,7 @@ var trivia = [
     },    
     {
         question: "What is the name of Sheldon’s podcast?",
-        answers: ["Fun of Flags", "Truth about Trains", "Fun with Physics", "Wonders of Weaving"]
+        answers: ["Fun of Flags", "Truth about Trains", "Fun with Physics", "Wild Weaving"]
     },    
     {
         question: "What did Sheldon almost win a Nobel Prize in?",
