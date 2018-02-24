@@ -1,0 +1,54 @@
+body {
+    background: url(../images/background.jpg);
+    margin-bottom: 160px;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.btnPadding {
+    margin-right: 20px;
+    width: 200px;
+}
+
+.title {
+    height: 80%;
+    text-align: center;
+    background-color: rgba(194, 3, 3, 0.6);
+    color: #ffffff;
+    padding-top: 27px;
+    padding-bottom: 27px;
+}
+
+.logo {
+    /* margin-left: 10%; */
+ margin-bottom: 30px;
+}
+
+.instructions {
+    font-weight: 600;
+    text-align: center;
+    text-shadow: 2px 5px rgba(92, 3, 3, 0.6);
+}
+
+.startButton, .btnPadding {
+    background-color: rgba(255, 255, 255, 0.7);
+    font-size: 21px;
+    font-weight: bold;
+    text-shadow: 2px 5px rgba(92, 3, 3, 0.2);
+   
+}
+
+.quest, .time, .feedback {
+    font-size: 28px;
+    text-shadow: 2px 5px rgba(92, 3, 3, 0.4);
+}
+
+#answer {
+    text-align: center;
+}
+
+.time, .quest {
+    text-align: center;
+}

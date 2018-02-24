@@ -30,7 +30,7 @@ var trivia = [
     },    
     {
         question: "What does Leonard bring Sheldon back from his sea research expedition?",
-        answers: ["A sailor cap", "A snow flake", "A copy of the Admiral Byrd Expedition", "A tee-shirt"]
+        answers: ["A sailor cap", "A snow flake", "A compass", "A tee-shirt"]
     },    
     {
         question: "Who has a brother who has done time in Prison?",
@@ -79,7 +79,13 @@ var totalQCount = 0;
 var correctAnsCount = 0;
 var wrongAnsCount = 0;
 var timeOutCount = 0;
-// var audio = new Audio("LINK AN AUDIO FILE HERE");
+
+
+// Creates new audio element and adds the song as an attribute
+var audioElement = document.createElement("audio");
+audioElement.setAttribute("src", "./assets/audio/bbt-audio.mp3");
+// Plays default music when page is loaded
+audioElement.play();
 
 function randomIndexGen() {
     var int1 = Math.floor(Math.random() * 4);
@@ -104,17 +110,17 @@ function randomIndexGen() {
 var i = 0;
 function questionSlideShow() {
 
-    $("#question").append(trivia[i].question + "<br>");
+    $("#question").append("<p class='quest'>" + trivia[i].question + "</p><br>");
 
     var index = randomIndexGen()
     var num = 1;
 
     for (var j = 0; j < 4; j++) {
         if (trivia[i].answers[index[j]] === trivia[i].answers[0]) {
-            $("#answer").append("<button id='correctAns'>" + trivia[i].answers[index[j]] + "</button><br>");
+            $("#answer").append("<button class='btn btn-secondary btn-lg btn-outline-danger btn-lg btnPadding' id='correctAns'>" + trivia[i].answers[index[j]] + "</button>");
         }
         else {
-            $("#answer").append("<button id='wrongAns" + num + "'>" + trivia[i].answers[index[j]] + "</button><br>");
+            $("#answer").append("<button class='btn btn-secondary btn-lg btn-outline-danger btn-lg btnPadding' id='wrongAns" + num + "'>" + trivia[i].answers[index[j]] + "</button>");
             num++;
         }
     }
@@ -122,7 +128,7 @@ function questionSlideShow() {
 }
 
 function timer() {
-    var count = 30;
+    var count = 15;
     var sec = setInterval(function () {
         if (selectionMade) {
             clearTimeout(sec);
@@ -146,14 +152,14 @@ function timer() {
 }
 
 function secondsLeft(val) {
-    $("#timer").html("<h2>00:" + val + "<h2>")
+    $("#timer").html("<h2 class='time'>00:" + val + "<h2>")
 
 }
 
 function timeUp() {
     $("#timer").empty();
     $("#question").empty();
-    $("#answer").html("Time is up! The correct answer is " + trivia[totalQCount].answers[0]);
+    $("#answer").html("<p class='feedback'>Time is up! The correct answer is " + trivia[totalQCount].answers[0]+ ".</p><br><img src='./assets/images/timeup-photo.gif' alt='correct gif'>");
     totalQCount++;
     setTimeout(function () {
         $("#answer").empty();
@@ -171,7 +177,7 @@ function timeUp() {
 function correctAnsFeedback() {
     $("#timer").empty();
     $("#question").empty();
-    $("#answer").text("You are correct!")
+    $("#answer").html("<p class='feedback'>You are correct!</p><img src='./assets/images/correct-photo.gif' alt='correct gif'>")
     setTimeout(function () {
         $("#answer").empty();
         if (totalQCount < trivia.length) {
@@ -188,7 +194,7 @@ function correctAnsFeedback() {
 function wrongAnsFeedback() {
     $("#timer").empty();
     $("#question").empty();
-    $("#answer").html("You are incorrect! The correct answer is " + trivia[totalQCount].answers[0]);
+    $("#answer").html("<p class='feedback'>You are incorrect! The correct answer is " + trivia[totalQCount].answers[0]+".</p><img src='./assets/images/wrong-photo.gif' alt='correct gif'>");
     setTimeout(function () {
         $("#answer").empty();
         if (totalQCount < trivia.length) {
@@ -205,8 +211,14 @@ function wrongAnsFeedback() {
 function finalStats() {
     $("#timer").empty();
     $("#question").empty();
-    $("#answer").html("That's a wrap!<br>Number of correct answers: " + correctAnsCount + "<br>Number of incorrect answers: " + wrongAnsCount + "<br>Number of unanswered questions: " + timeOutCount + "<br>");
-    $("#answer").append("<button class= 'startButton'>Try Again</button>")
+    $("#answer").html("<p class='feedback'>That's a wrap!<br>Number of correct answers: " + correctAnsCount + "<br>Number of incorrect answers: " + wrongAnsCount + "<br>Number of unanswered questions: " + timeOutCount + "</p><br>");
+    $("#button").append("<button class='btn btn-secondary btn-lg btn-block btn-outline-danger btn-lg startButton' role='button'>Try Again</button>")
+    $(".startButton").click(function () {
+        $("#button").empty();
+        $("#answer").empty();
+        timer();
+        questionSlideShow()
+    })
     // Reset
     reset();
 }
@@ -221,9 +233,8 @@ function reset() {
 
 
 // Start button
-$("#button").html("<button class= 'startButton'>Start</button><br>");
 
-$(document).on("click", ".startButton", function () {
+$(".startButton").click(function () {
     $("#button").empty();
     $("#answer").empty();
     timer();
