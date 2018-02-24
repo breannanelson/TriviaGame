@@ -159,7 +159,7 @@ function secondsLeft(val) {
 function timeUp() {
     $("#timer").empty();
     $("#question").empty();
-    $("#answer").html("<p class='feedback'>Time is up! The correct answer is " + trivia[totalQCount].answers[0]+ ".</p><br><img src='./assets/images/timeup-photo.gif' alt='correct gif'>");
+    $("#answer").html("<p class='feedback'>Time is up! The correct answer is " + trivia[totalQCount].answers[0]+ ".</p><br><img class='img-fluid' src='./assets/images/timeup-photo.gif' alt='correct gif'>");
     totalQCount++;
     setTimeout(function () {
         $("#answer").empty();
@@ -177,7 +177,7 @@ function timeUp() {
 function correctAnsFeedback() {
     $("#timer").empty();
     $("#question").empty();
-    $("#answer").html("<p class='feedback'>You are correct!</p><img src='./assets/images/correct-photo.gif' alt='correct gif'>")
+    $("#answer").html("<p class='feedback'>You are correct!</p><img class='img-fluid' src='./assets/images/correct-photo.gif' alt='correct gif'>")
     setTimeout(function () {
         $("#answer").empty();
         if (totalQCount < trivia.length) {
@@ -194,7 +194,7 @@ function correctAnsFeedback() {
 function wrongAnsFeedback() {
     $("#timer").empty();
     $("#question").empty();
-    $("#answer").html("<p class='feedback'>You are incorrect! The correct answer is " + trivia[totalQCount].answers[0]+".</p><img src='./assets/images/wrong-photo.gif' alt='correct gif'>");
+    $("#answer").html("<p class='feedback'>You are incorrect! The correct answer is " + trivia[totalQCount].answers[0]+".</p><img class='img-fluid' src='./assets/images/wrong-photo.gif' alt='correct gif'>");
     setTimeout(function () {
         $("#answer").empty();
         if (totalQCount < trivia.length) {
